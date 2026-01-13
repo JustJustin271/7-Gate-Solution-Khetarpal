@@ -1,0 +1,41 @@
+  const int btnA = 2;
+const int btnB = 3;
+const int btnC = 4;
+const int btnD = 5;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(btnA, INPUT_PULLUP); //
+  pinMode(btnB, INPUT_PULLUP);
+  pinMode(btnC, INPUT_PULLUP);
+  pinMode(btnD, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  bool sbtnA = !digitalRead(btnA); //INPUT_PULLUP makes it so that LOW means pressed, so a not is done so that HIGH means pressed, which now means 1, now able to be used in the Boolean Algebra :D
+  bool sbtnB = !digitalRead(btnB);
+  bool sbtnC = !digitalRead(btnC);
+  bool sbtnD = !digitalRead(btnD);
+
+  delay(20);
+
+//Logical Operations from the wonderful 7-Gate Solution, my friend had provided  
+  bool AD = (sbtnA && sbtnD);
+  bool nBC = !(sbtnB && sbtnC);
+  bool oabove = (AD || nBC);
+
+  bool nD = !(sbtnD);
+  bool onDC = (sbtnC || nD);
+  bool oonDCB = (sbtnB || onDC);
+
+  //Final
+  bool finalResult = (oonDCB && oabove);
+//7-Gates :D
+  delay(20);
+  
+  digitalWrite(ledPin, finalResult);
+  delay(20);
+}
+//#Khetarpal Solution PHS
+//January 13th, 2026
