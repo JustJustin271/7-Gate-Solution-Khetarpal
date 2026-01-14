@@ -1,4 +1,4 @@
-  const int btnA = 2;
+const int btnA = 2;
 const int btnB = 3;
 const int btnC = 4;
 const int btnD = 5;
@@ -21,6 +21,9 @@ void loop() {
   delay(20);
 
 //Logical Operations from the wonderful 7-Gate Solution, my friend had provided  
+//This will turn on 0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 15
+//This will turn off 6, 7, 8, 9, 14
+//The Nots were groups, and then placed a not over all of it
   bool AD = (sbtnA && sbtnD);
   bool nBC = !(sbtnB && sbtnC);
   bool oabove = (AD || nBC);
@@ -29,7 +32,7 @@ void loop() {
   bool onDC = (sbtnC || nD);
   bool oonDCB = (sbtnB || onDC);
 
-  //Final
+  //Final gate operation
   bool finalResult = (oonDCB && oabove);
 //7-Gates :D
   delay(20);
